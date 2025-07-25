@@ -31,8 +31,8 @@ class BrightwheelController < ApplicationController
 
   def time_period
     Time.zone = 'America/New_York'
-    start_at = Time.zone.now.beginning_of_day - 1.day
-    end_at = Time.zone.now.end_of_day - 1.day
+    start_at = Time.zone.now.beginning_of_day
+    end_at = Time.zone.now.end_of_day
 
     "start_date=#{start_at}&end_date=#{end_at}"
   end
