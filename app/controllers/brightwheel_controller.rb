@@ -40,9 +40,9 @@ class BrightwheelController < ApplicationController
   def parse_response(response)
     data = JSON.parse(response)
 
-    data['activities'].map do |activity|
-      format_activity_entry(activity)
-    end.uniq
+    sorted = data['activities'].sort_by { |activity| activity['event_date'] }.reverse
+
+    sorted.map { |activity| format_activity_entry(activity) }.uniq
   end
 
   private
