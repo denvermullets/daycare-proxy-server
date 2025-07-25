@@ -69,7 +69,7 @@ class BrightwheelController < ApplicationController
   def extract_note(activity)
     return potty_note(activity['details_blob'], activity['note']) if activity['action_type'] == 'ac_potty'
 
-    cleaned_note(activity['note']) || '(no note)'
+    cleaned_note(activity['note']) || ''
   end
 
   def potty_note(details_blob, note)
