@@ -43,12 +43,13 @@ class BrightwheelController < ApplicationController
     entries = data['activities'].map do |activity|
       raw_type = activity['action_type'] || ''
       formatted_type = raw_type.sub(/^ac_/, '').titleize
-      emoji = EMOJIS[formatted_type] || '🧸'
+      # emoji = EMOJIS[formatted_type] || '🧸'
       time = Time.parse(activity['event_date']).in_time_zone('America/New_York').strftime('%I:%M %p')
 
       note = activity['note']&.gsub(/\s+/, ' ')&.strip || '(no note)'
 
-      "#{time} — #{emoji} #{formatted_type}: #{note}"
+      # "#{time} — #{emoji} #{formatted_type}: #{note}"
+      "[#{time}] #{formatted_type}: #{note}"
     end
 
     entries.uniq
