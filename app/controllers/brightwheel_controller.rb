@@ -1,5 +1,4 @@
 class BrightwheelController < ApplicationController
-  # Emoji mapping for action types
   EMOJIS = {
     'Checkin' => '👋',
     'Checkout' => '👋',
@@ -47,11 +46,11 @@ class BrightwheelController < ApplicationController
       emoji = EMOJIS[formatted_type] || '🧸'
       time = Time.parse(activity['event_date']).in_time_zone('America/New_York').strftime('%I:%M %p')
 
-      note = activity['note']&.gsub(/\s+/, ' ')&.strip || '(no note)' # replaces newlines and multiple spaces
+      note = activity['note']&.gsub(/\s+/, ' ')&.strip || '(no note)'
 
       "#{time} — #{emoji} #{formatted_type}: #{note}"
     end
 
-    entries.uniq # removes duplicates
+    entries.uniq
   end
 end
